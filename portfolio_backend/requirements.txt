@@ -9,4 +9,4 @@ WTForms==3.0.1
 Werkzeug==2.3.7
 email_validator
 gunicorn
-psycopg
+psycopg2
