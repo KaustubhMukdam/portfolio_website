@@ -1,6 +1,13 @@
-# Portfolio Website
+# 🌐 Project 2/20 – Portfolio Website
 
-A modern, responsive portfolio website with a beautiful dark theme. Built with Flask backend and vanilla HTML/CSS/JavaScript frontend.
+This is the **second project** in my **100 Days of Code – Portfolio Project Series**.  
+Inspired by Day 83 of Dr. Angela Yu’s Bootcamp, I built a **full-stack personal portfolio website** with both frontend and backend integration. 🚀  
+
+🔗 **Live Links**  
+- Frontend: [portfolio-website-drab-kappa-33.vercel.app](https://portfolio-website-drab-kappa-33.vercel.app/)  
+- Backend API: [portfolio-website-buqt.onrender.com](https://portfolio-website-buqt.onrender.com)  
+- GitHub Repo: [github.com/KaustubhMukdam/portfolio_website](https://github.com/KaustubhMukdam/portfolio_website.git)  
+
 
 ## 🌟 Features
 
@@ -210,6 +217,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [@KaustubhMukdam](https://github.com/KaustubhMukdam)
 - LinkedIn: [kaustubh-mukdam-ab0170340](https://www.linkedin.com/in/kaustubh-mukdam-ab0170340)
 - Twitter: [@KMukdam9474](https://x.com/KMukdam9474)
+
+📌 Next Steps
+
+This is just Project 2/20 in my Portfolio Project Series.
+Stay tuned for more projects combining Python, web development, and creative problem-solving. 🚀
 
 ## 🙏 Acknowledgments
 
