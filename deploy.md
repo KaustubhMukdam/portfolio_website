@@ -25,8 +25,8 @@ For static frontend hosting:
 
 1. Connect your GitHub repository to Netlify
 2. Set build command: `echo "Static site"`
-3. Set publish directory: `portfolio_frontend`
-4. Deploy your backend separately (Heroku, Railway, etc.)
+const API_BASE_URL = 'https://portfolio-website-buqt.onrender.com/api';3. Set publish directory: `portfolio_frontend`
+4. Deploy your backend separately (Heroku, Render, etc.)
 
 ### 3. Vercel (Frontend + Backend)
 
@@ -47,11 +47,11 @@ heroku create your-portfolio-app
 git push heroku main
 ```
 
-### 5. Railway (Full Stack)
+### 5. Render (Full Stack)
 
-1. Connect your GitHub repository to Railway
-2. Railway will automatically detect your Flask app
-3. Set environment variables in Railway dashboard
+1. Connect your GitHub repository to Render
+2. Create a new Web Service pointing to your repository
+3. Set environment variables in Render dashboard
 4. Deploy
 
 ## Environment Variables

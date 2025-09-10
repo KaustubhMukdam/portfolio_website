@@ -63,19 +63,19 @@ This will start:
 
 - Frontend API base URL: set in `portfolio_frontend/script.js`.
   - Development: `const API_BASE_URL = 'http://localhost:5000/api';`
-  - Production (example): `const API_BASE_URL = 'https://<your-railway-domain>/api';`
+  - Production (example): `const API_BASE_URL = 'https://<your-render-service-url>/api';`
 - Resume file path (backend): put your PDF at `portfolio_backend/app/static/Kaustubh_Mukdam_Resume.pdf`.
 - Profile photo path (backend): put your photo at `portfolio_backend/app/static/profile.jpg`.
 
-## 🎯 Deploy (Recommended: Railway backend + GitHub Pages frontend)
+## 🎯 Deploy (Recommended: Render backend + GitHub Pages frontend)
 
-### Backend → Railway
+### Backend → Render
 
 1. Push code to GitHub (this repository).
-2. In Railway: New Project → Deploy from GitHub → select this repo.
+2. In Render: New Web Service → Connect GitHub → select this repo.
 3. Set service root/working directory to `portfolio_backend`.
-4. Start command (if prompted): `python run.py`.
-5. Add environment variables in Railway → Variables:
+4. Start command: `python run.py`.
+5. Add environment variables in Render → Environment:
    - `FLASK_ENV=production`
    - `SECRET_KEY=<strong-random-value>`
    - `MAIL_SERVER=smtp.gmail.com`
@@ -83,18 +83,18 @@ This will start:
    - `MAIL_USE_TLS=true`
    - `MAIL_USERNAME=<your-email>`
    - `MAIL_PASSWORD=<your-app-password>`
-6. Add a Postgres database (Railway → Add → Database → Postgres) and set `DATABASE_URL` to the provided connection string.
-7. First-time setup: Railway shell → run:
+6. Add a Postgres database (Render → New → PostgreSQL) and set `DATABASE_URL` to the provided connection string.
+7. First-time setup: Use Render Shell or add to your startup script:
    - `python create_tables.py`
    - optional: `python seed_sample_data.py`
 8. Verify backend:
-   - `https://<your-railway-domain>/api/about`
-   - `https://<your-railway-domain>/api/resume`
+   - `https://<your-render-service-url>/api/about`
+   - `https://<your-render-service-url>/api/resume`
 
 ### Frontend → GitHub Pages
 
 1. In `portfolio_frontend/script.js`, set:
-   - `const API_BASE_URL = 'https://<your-railway-domain>/api';`
+   - `const API_BASE_URL = 'https://<your-render-service-url>/api';`
 2. Commit and push.
 3. GitHub → Repo Settings → Pages:
    - Source: Deploy from a branch
@@ -190,7 +190,7 @@ See [deploy.md](deploy.md) for detailed deployment instructions for various plat
 - Netlify
 - Vercel
 - Heroku
-- Railway
+- Render
 
 ## 🤝 Contributing
 
