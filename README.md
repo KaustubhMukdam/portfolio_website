@@ -21,6 +21,14 @@ Inspired by Day 83 of Dr. Angela Yu’s Bootcamp, I built a **full-stack persona
 - **Skills Display**: Interactive skills section with proficiency levels
 - **Experience Timeline**: Professional experience with timeline visualization
 
+
+## 🎥 Demo
+Here’s a quick preview of the site in action:  
+
+➡️ https://drive.google.com/file/d/1Hr9p8MhxnM6NcU3csqmomVDevzVW-34V/view?usp=drive_link
+
+
+
 ## 🚀 Quick Start
 
 ### Prerequisites
