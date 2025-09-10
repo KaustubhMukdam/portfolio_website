@@ -59,6 +59,57 @@ This will start:
 - Backend server at `http://localhost:5000`
 - Frontend server at `http://localhost:3000`
 
+## 🔧 Production Config
+
+- Frontend API base URL: set in `portfolio_frontend/script.js`.
+  - Development: `const API_BASE_URL = 'http://localhost:5000/api';`
+  - Production (example): `const API_BASE_URL = 'https://<your-railway-domain>/api';`
+- Resume file path (backend): put your PDF at `portfolio_backend/app/static/Kaustubh_Mukdam_Resume.pdf`.
+- Profile photo path (backend): put your photo at `portfolio_backend/app/static/profile.jpg`.
+
+## 🎯 Deploy (Recommended: Railway backend + GitHub Pages frontend)
+
+### Backend → Railway
+
+1. Push code to GitHub (this repository).
+2. In Railway: New Project → Deploy from GitHub → select this repo.
+3. Set service root/working directory to `portfolio_backend`.
+4. Start command (if prompted): `python run.py`.
+5. Add environment variables in Railway → Variables:
+   - `FLASK_ENV=production`
+   - `SECRET_KEY=<strong-random-value>`
+   - `MAIL_SERVER=smtp.gmail.com`
+   - `MAIL_PORT=587`
+   - `MAIL_USE_TLS=true`
+   - `MAIL_USERNAME=<your-email>`
+   - `MAIL_PASSWORD=<your-app-password>`
+6. Add a Postgres database (Railway → Add → Database → Postgres) and set `DATABASE_URL` to the provided connection string.
+7. First-time setup: Railway shell → run:
+   - `python create_tables.py`
+   - optional: `python seed_sample_data.py`
+8. Verify backend:
+   - `https://<your-railway-domain>/api/about`
+   - `https://<your-railway-domain>/api/resume`
+
+### Frontend → GitHub Pages
+
+1. In `portfolio_frontend/script.js`, set:
+   - `const API_BASE_URL = 'https://<your-railway-domain>/api';`
+2. Commit and push.
+3. GitHub → Repo Settings → Pages:
+   - Source: Deploy from a branch
+   - Branch: `main`
+   - Folder: `/portfolio_frontend`
+4. Open the published URL: `https://<your-username>.github.io/portfolio_website/`
+
+### Post-Deploy Checks
+
+- Frontend loads About/Skills/Projects without CORS errors.
+- Resume button downloads your PDF.
+- Profile photo renders in a circle.
+- Contact form POST works (`/api/contact`).
+- If needed, restrict CORS to your frontend origin in `app/extensions.py`.
+
 ## 📁 Project Structure
 
 ```
