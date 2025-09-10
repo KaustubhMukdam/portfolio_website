@@ -24,7 +24,7 @@ def submit_contact():
         msg = Message(
             subject=f"Portfolio Contact: {form.subject.data}",
             sender=form.email.data,
-            recipients=['your.email@example.com'],
+            recipients=['kaustubhmukdam7@gmail.com'],
             body=f"From: {form.name.data} ({form.email.data})\n\n{form.message.data}"
         )
         mail.send(msg)
@@ -32,6 +32,9 @@ def submit_contact():
         return jsonify({'message': 'Message sent successfully'}), 200
     
     return jsonify({'errors': form.errors}), 400
+
+"""
+Temporarily disabling testimonials endpoint.
 
 @contact.route('/api/testimonials')
 def get_testimonials():
@@ -45,3 +48,4 @@ def get_testimonials():
         'rating': testimonial.rating,
         'image_url': testimonial.image_url
     } for testimonial in testimonials])
+"""

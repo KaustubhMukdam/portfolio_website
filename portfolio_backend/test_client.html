@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .endpoint { margin: 20px 0; padding: 10px; border: 1px solid #ddd; }
+        button { padding: 8px 16px; margin: 5px; cursor: pointer; }
+        .response { background: #f5f5f5; padding: 10px; margin: 10px 0; overflow-x: auto; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Portfolio API Test Client</h1>
+    
+    <div class="endpoint">
+        <h3>About Me</h3>
+        <button onclick="testEndpoint('/api/about', 'about-response')">Test</button>
+        <div id="about-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Skills</h3>
+        <button onclick="testEndpoint('/api/skills', 'skills-response')">Test</button>
+        <div id="skills-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Projects</h3>
+        <button onclick="testEndpoint('/api/projects', 'projects-response')">Test</button>
+        <div id="projects-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Experience</h3>
+        <button onclick="testEndpoint('/api/experience', 'experience-response')">Test</button>
+        <div id="experience-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Blog Posts</h3>
+        <button onclick="testEndpoint('/api/blog/posts', 'blog-response')">Test</button>
+        <div id="blog-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Testimonials</h3>
+        <button onclick="testEndpoint('/api/testimonials', 'testimonials-response')">Test</button>
+        <div id="testimonials-response" class="response"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Contact Form Test</h3>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Name" required><br><br>
+            <input type="email" name="email" placeholder="Email" required><br><br>
+            <input type="text" name="subject" placeholder="Subject"><br><br>
+            <textarea name="message" placeholder="Message" required></textarea><br><br>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="contact-response" class="response"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        
+        async function testEndpoint(endpoint, responseElementId) {
+            try {
+                const response = await fetch(API_BASE + endpoint);
+                const data = await response.json();
+                document.getElementById(responseElementId).innerHTML = 
+                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById(responseElementId).innerHTML = 
+                    '<pre>Error: ' + error.message + '</pre>';
+            }
+        }
+        
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch(API_BASE + '/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData))
+                });
+                
+                const data = await response.json();
+                document.getElementById('contact-response').innerHTML = 
+                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('contact-response').innerHTML = 
+                    '<pre>Error: ' + error.message + '</pre>';
+            }
+        });
+    </script>
+</body>
+</html>

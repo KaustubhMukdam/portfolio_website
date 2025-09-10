@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Project, Skill, Experience, BlogPost, Testimonial
+from flask import send_file, current_app, send_from_directory
+import os
 
 main = Blueprint('main', __name__)
 
@@ -9,10 +11,11 @@ def get_about():
     # Return static about me data or from database
     return jsonify({
         'name': 'Kaustubh Devidas Mukdam',
-        'title': 'Your Professional Title',
-        'bio': 'Your biography...',
-        'location': 'Your Location',
-        'email': 'your.email@example.com',
+        'title': 'Aspiring Machine Learning Engineer | Future AI Engineer',
+        'bio': 'I am a passionate and dedicated Machine Learning Engineer with a strong foundation in machine learning algorithms, data analysis, and AI applications. I am currently pursuing a Bachelor of Technology in Computer Science and Engineering at the Vishwakarma Institute of Technology, Pune. I am interested in building AI applications that can help solve real-world problems and improve people\'s lives.',
+        'location': 'Pune, Maharashtra, India',
+        'image_url': '/static/profile.jpg',
+        'email': 'kaustubhmukdam7@gmail.com',
         'social_links': {
             'github': 'https://github.com/KaustubhMukdam',
             'linkedin': 'www.linkedin.com/in/kaustubh-mukdam-ab0170340',
@@ -50,5 +53,10 @@ def get_experience():
 # Resume download endpoint
 @main.route('/api/resume')
 def download_resume():
-    # Serve resume PDF file
-    return send_file('"D:\Kaustubh_Mukdam_Resume.pdf"', as_attachment=True)
+    # Serve resume PDF safely from the app static directory
+    static_dir = os.path.join(current_app.root_path, 'static')
+    filename = 'Kaustubh_Mukdam_Resume.pdf'
+    try:
+        return send_from_directory(static_dir, filename, as_attachment=True, download_name=filename)
+    except FileNotFoundError:
+        return jsonify({'error': 'Resume not found'}), 404
